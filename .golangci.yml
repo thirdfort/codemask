@@ -1,0 +1,140 @@
+version: "2"
+linters:
+  default: none
+  enable:
+    - asasalint
+    - asciicheck
+    - bidichk
+    - containedctx
+    - copyloopvar
+    - dogsled
+    - funlen
+    - durationcheck
+    - errorlint
+    - exhaustive
+    - gocheckcompilerdirectives
+    - gocritic
+    - govet
+    - errcheck
+    - ineffassign
+    # - nolintlint disabled due to this bug: https://github.com/golangci/golangci-lint/issues/3228!
+    - nosprintfhostport
+    - prealloc
+    - predeclared
+    - staticcheck
+    - tagalign
+    - unused
+
+  settings:
+    funlen:
+      lines: 100
+      statements: 100
+      ignore-comments: true
+    exhaustive:
+      # exclude enum members that represent unspecified values
+      ignore-enum-members: "(.*UNSPECIFIED$|flog.UnspecifiedFormat)"
+      default-case-required: true
+    gocritic:
+      # this enables ADDITIONAL checks on top of the default set
+      enabled-checks:
+        # diagnostic rules
+        - badLock
+        - badRegexp
+        - badSorting
+        - badSyncOnceFunc
+        - builtinShadowDecl
+        - deferInLoop
+        - dynamicFmtString
+        - emptyDecl
+        - evalOrder
+        - externalErrorReassign
+        - filepathJoin
+        - nilValReturn
+        - rangeAppendAll
+        - regexpPattern
+        - returnAfterHttpError
+        - sloppyReassign
+        - sortSlice
+        - sprintfQuotedString
+        - sqlQuery
+        - syncMapLoadAndDelete
+        - truncateCmp
+        - uncheckedInlineErr
+        - unnecessaryDefer
+        - weakCond
+        # style rules
+        - boolExprSimplify
+        - builtinShadow
+        - commentedOutImport
+        - deferUnlambda
+        - docStub
+        - dupImport
+        - emptyFallthrough
+        - emptyStringTest
+        - exposedSyncMutex
+        - hexLiteral
+        - httpNoBody
+        - initClause
+        - methodExprCall
+        - nestingReduce
+        - octalLiteral
+        - paramTypeCombine
+        - preferFilepathJoin
+        - ptrToRefParam
+        - redundantSprint
+        - regexpSimplify
+        - stringConcatSimplify
+        - stringsCompare
+        - timeExprSimplify
+        - todoCommentWithoutDetail
+        - tooManyResultsChecker
+        - typeAssertChain
+        - typeDefFirst
+        - typeUnparen
+        - unlabelStmt
+        - unnecessaryBlock
+        - whyNoLint
+        - yodaStyleExpr
+        # performance rules
+        - appendCombine
+        - equalFold
+        - hugeParam
+        - indexAlloc
+        - preferDecodeRune
+        - preferFprint
+        - preferStringWriter
+        - preferWriteByte
+        - rangeExprCopy
+        - rangeValCopy
+        - sliceClear
+        - stringXbytes
+      settings:
+        hugeParam:
+          sizeThreshold: 512
+        rangeValCopy:
+          sizeThreshold: 512
+
+  exclusions:
+    rules:
+      - path: _test\.go
+        linters:
+          - funlen
+
+formatters:
+  enable:
+    - gci
+    - gofmt
+    - gofumpt
+
+  settings:
+    gci:
+      sections:
+        - standard
+        - default
+        - prefix(github.com/thirdfort/codemask)
+    gofmt:
+      rewrite-rules:
+        - pattern: interface{}
+          replacement: any
+    gofumpt:
+      extra-rules: true

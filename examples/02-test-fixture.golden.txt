@@ -1,0 +1,22 @@
+--- a/services/client/check_test.go
++++ b/services/client/check_test.go
+# masked go · code changed, literals changed, comments unchanged · tags: test
+@@ -13,6 +13,18 @@
+ 			subject: Subject{Name: "<str>", Email: "<str>"},
+ 			want:    StatusResolved,
+ 		},
++		{
++			name: "<str>",
++			subject: Subject{
++				Name:     "<str>",
++				Email:    "<str>",
++				DOB:      "<str>",
++				Postcode: "<str>",
++				SortCode: <num>,
++				Account:  <num>,
++			},
++			want: StatusResolved,
++		},
+ 	}
+ 	for _, tt := range tests {
+ 		t.Run(tt.name, func(t *testing.T) {

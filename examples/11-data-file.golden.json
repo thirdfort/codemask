@@ -1,0 +1,22 @@
+{
+  "files": [
+    {
+      "path": "services/client/testdata/subjects.json",
+      "status": "added",
+      "mode": "counts",
+      "reason": "data-file",
+      "tags": [
+        "data"
+      ],
+      "added": 4,
+      "removed": 0
+    }
+  ],
+  "summary": {
+    "files": 1,
+    "added": 4,
+    "removed": 0,
+    "masked": 0,
+    "countsOnly": 1
+  }
+}

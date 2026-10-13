@@ -1,0 +1,19 @@
+--- a/infra/environments/nonproduction/secrets.tf
++++ b/infra/environments/nonproduction/secrets.tf
+# masked hcl · code changed, literals changed, comments unchanged · tags: iac
+@@ -6,3 +6,15 @@
+     auto {}
+   }
+ }
++
++resource "google_secret_manager_secret" "purr_ai_gateway_api_key" {
++  project   = var.project_id
++  secret_id = "<str>"
++  labels = {
++    owner = "<str>"
++  }
++
++  replication {
++    auto {}
++  }
++}

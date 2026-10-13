@@ -1,0 +1,25 @@
+--- a/services/client/fixtures.go
++++ b/services/client/fixtures.go
+# masked go · code changed, literals changed, comments unchanged
+@@ -4,15 +4,15 @@
+ const subjectFixture = `
+ <str>
+ <str>
+-<str>
+-<str>
++<str>
++<str>
+ <str>
+-<str>
+-<str>
++<str>
++<str>
+ <str>
+ <str>
+-<str>
++<str>
+ `
+ 
+ // <comment>
+-const importBatchSize = 50
++const importBatchSize = 100

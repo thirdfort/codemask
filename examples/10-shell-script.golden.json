@@ -1,0 +1,44 @@
+{
+  "files": [
+    {
+      "path": "scripts/reseed-subject.sh",
+      "status": "modified",
+      "language": "shell",
+      "mode": "masked",
+      "added": 10,
+      "removed": 0,
+      "facts": {
+        "codeChanged": true,
+        "literalsChanged": true,
+        "commentsChanged": false
+      },
+      "hunks": [
+        {
+          "header": "@@ -6,3 +6,13 @@",
+          "lines": [
+            " ",
+            " psql -h \u003carg\u003e -U \u003carg\u003e -d \u003carg\u003e \\",
+            "   -c \"\u003cstr\u003e\"",
+            "+",
+            "+if [[ -n \"\u003cstr\u003e\" ]]; then",
+            "+  echo \"\u003cstr\u003e\"",
+            "+  exit 0",
+            "+fi",
+            "+",
+            "+./local/seed-subject.sh --email=\"\u003cstr\u003e\" --name \"\u003cstr\u003e\" \u003carg\u003e",
+            "+cat \u003c\u003cLOG \u003e\u003e \u003carg\u003e",
+            "+\u003cstr\u003e",
+            "+LOG"
+          ]
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "files": 1,
+    "added": 10,
+    "removed": 0,
+    "masked": 1,
+    "countsOnly": 0
+  }
+}

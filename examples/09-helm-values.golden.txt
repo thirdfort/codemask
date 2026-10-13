@@ -1,0 +1,22 @@
+--- a/deploy/client-api/values.nonproduction.yaml
++++ b/deploy/client-api/values.nonproduction.yaml
+# masked yaml · code changed, literals changed, comments unchanged · tags: iac
+@@ -1,13 +1,15 @@
+ # <comment>
+ image:
+   repository: <val>
+-  tag: v1.41.0
+-replicas: 2
++  tag: v1.42.0
++replicas: 3
++notes: |
++  <str>
+ env:
+   - name: <val>
+     value: <val>
+   - name: <val>
+-    value: "<str>"
++    value: "<str>"
+ resources:
+   limits:
+     memory: 512Mi

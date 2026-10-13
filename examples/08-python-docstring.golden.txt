@@ -1,0 +1,16 @@
+--- a/tools/report.py
++++ b/tools/report.py
+# masked python · code changed, literals changed, comments unchanged
+@@ -6,9 +6,10 @@
+ def write_report(rows, path):
+     """<str>
+ 
+-<str>
++<str>
++<str>
+ <str>"""
+     with open(path, "<str>", newline="") as f:
+-        writer = csv.DictWriter(f, fieldnames=["<str>", "<str>"])
++        writer = csv.DictWriter(f, fieldnames=["<str>", "<str>", "<str>"])
+         writer.writeheader()
+         writer.writerows(rows)

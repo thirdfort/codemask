@@ -1,0 +1,40 @@
+{
+  "files": [
+    {
+      "path": "services/client/resolve.go",
+      "status": "modified",
+      "language": "go",
+      "mode": "masked",
+      "added": 3,
+      "removed": 0,
+      "facts": {
+        "codeChanged": false,
+        "literalsChanged": false,
+        "commentsChanged": true
+      },
+      "hunks": [
+        {
+          "header": "@@ -1,6 +1,9 @@",
+          "lines": [
+            " package client",
+            " ",
+            " // \u003ccomment\u003e",
+            "+//",
+            "+// \u003ccomment\u003e",
+            "+// \u003ccomment\u003e",
+            " func ResolveCheck(s Subject) Status {",
+            " \tif s.Name == \"\" || s.Email == \"\" {",
+            " \t\treturn StatusPending"
+          ]
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "files": 1,
+    "added": 3,
+    "removed": 0,
+    "masked": 1,
+    "countsOnly": 0
+  }
+}

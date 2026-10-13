@@ -1,0 +1,26 @@
+diff --git a/services/client/fixtures.go b/services/client/fixtures.go
+index faaa513..221c447 100644
+--- a/services/client/fixtures.go
++++ b/services/client/fixtures.go
+@@ -4,15 +4,15 @@ package client
+ const subjectFixture = `
+ subject:
+   kind: individual
+-  name: Test Subject
+-  email: subject@example.com
++  name: Jane Okafor
++  email: jane.okafor@example.com
+   address:
+-    line1: 1 Test Street
+-    town: Testville
++    line1: 14 Elm Row
++    town: Edinburgh
+   documents:
+     - type: passport
+-      number: "000000000"
++      number: "533401827"
+ `
+ 
+ // importBatchSize is how many subjects one import call takes.
+-const importBatchSize = 50
++const importBatchSize = 100

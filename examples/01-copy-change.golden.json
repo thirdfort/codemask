@@ -1,0 +1,45 @@
+{
+  "files": [
+    {
+      "path": "portal/src/components/SaveButton.tsx",
+      "status": "modified",
+      "language": "tsx",
+      "mode": "masked",
+      "tags": [
+        "ui"
+      ],
+      "added": 2,
+      "removed": 2,
+      "facts": {
+        "codeChanged": false,
+        "literalsChanged": true,
+        "commentsChanged": false
+      },
+      "hunks": [
+        {
+          "header": "@@ -8,9 +8,9 @@",
+          "lines": [
+            " ",
+            " export function SaveButton({ saving, onSave }: SaveButtonProps) {",
+            "   return (",
+            "-    \u003cButton aria-label=\"\u003cstr\u003e\" disabled={saving} onClick={onSave}\u003e",
+            "+    \u003cButton aria-label=\"\u003cstr\u003e\" disabled={saving} onClick={onSave}\u003e",
+            "       {saving ? \u003cSpinner /\u003e : null}",
+            "-      \u003ctext\u003e",
+            "+      \u003ctext\u003e",
+            "     \u003c/Button\u003e",
+            "   );",
+            " }"
+          ]
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "files": 1,
+    "added": 2,
+    "removed": 2,
+    "masked": 1,
+    "countsOnly": 0
+  }
+}

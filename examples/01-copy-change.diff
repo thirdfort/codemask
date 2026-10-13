@@ -1,0 +1,23 @@
+diff --git a/portal/src/components/SaveButton.tsx b/portal/src/components/SaveButton.tsx
+index 2b59f9a..8e3b1be 100644
+--- a/portal/src/components/SaveButton.tsx
++++ b/portal/src/components/SaveButton.tsx
+@@ -1,16 +1,16 @@
+ import { Button } from "@/components/ui/button";
+ import { Spinner } from "@/components/ui/spinner";
+ 
+ type SaveButtonProps = {
+   saving: boolean;
+   onSave: () => void;
+ };
+ 
+ export function SaveButton({ saving, onSave }: SaveButtonProps) {
+   return (
+-    <Button aria-label="Save" disabled={saving} onClick={onSave}>
++    <Button aria-label="Save changes" disabled={saving} onClick={onSave}>
+       {saving ? <Spinner /> : null}
+-      Save
++      Save changes
+     </Button>
+   );
+ }

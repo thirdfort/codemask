@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Rebuilds each example's .diff from its before (a/) and after (b/) trees.
+# Then run `go test ./... -update` to refresh the expected output.
+#
+# An example directory may hold:
+#   a/, b/    the files before and after the change
+#   from      the name of another example whose a/ and b/ to reuse
+#   context   lines of context to diff with (default: the whole file)
+set -euo pipefail
+cd "$(dirname "$0")"
+
+for dir in testdata/*/; do
+  name=$(basename "$dir")
+  src="testdata/$name"
+  [[ -f "$src/from" ]] && src="testdata/$(cat "$src/from")"
+  ctx=$(cat "testdata/$name/context" 2>/dev/null || echo 1000000)
+  set +e
+  (cd "$src" && git -c core.quotepath=off diff --no-index --no-prefix --no-color --no-ext-diff -U"$ctx" a b) > "$name.diff"
+  rc=$?
+  set -e
+  # git diff exits 1 when the trees differ, which is the point.
+  if [[ $rc -gt 1 ]]; then
+    echo "gen.sh: git diff failed for $name" >&2
+    exit 1
+  fi
+done

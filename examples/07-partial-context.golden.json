@@ -1,0 +1,20 @@
+{
+  "files": [
+    {
+      "path": "services/client/fixtures.go",
+      "status": "modified",
+      "language": "go",
+      "mode": "counts",
+      "reason": "partial-context",
+      "added": 6,
+      "removed": 6
+    }
+  ],
+  "summary": {
+    "files": 1,
+    "added": 6,
+    "removed": 6,
+    "masked": 0,
+    "countsOnly": 1
+  }
+}

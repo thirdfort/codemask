@@ -1,0 +1,13 @@
+# client-api in nonproduction
+image:
+  repository: europe-west2-docker.pkg.dev/core/client-api
+  tag: v1.41.0
+replicas: 2
+env:
+  - name: SUPPORT_EMAIL
+    value: support@example.com
+  - name: FEATURE_PREVENT_OWN_RESOLUTION
+    value: "false"
+resources:
+  limits:
+    memory: 512Mi

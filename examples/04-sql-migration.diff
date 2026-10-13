@@ -1,0 +1,13 @@
+diff --git b/db/migrations/0042_add_preferred_name.sql b/db/migrations/0042_add_preferred_name.sql
+new file mode 100644
+index 0000000..304355e
+--- /dev/null
++++ b/db/migrations/0042_add_preferred_name.sql
+@@ -0,0 +1,7 @@
++-- Adds a preferred name, backfilled for the subject who asked for it.
++ALTER TABLE subjects ADD COLUMN preferred_name text;
++
++UPDATE subjects
++SET preferred_name = 'Jane'
++WHERE email = 'jane.okafor@example.com'
++  AND account_number = 41000032;

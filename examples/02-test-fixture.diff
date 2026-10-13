@@ -1,0 +1,41 @@
+diff --git a/services/client/check_test.go b/services/client/check_test.go
+index c82e9e6..fac5437 100644
+--- a/services/client/check_test.go
++++ b/services/client/check_test.go
+@@ -1,24 +1,36 @@
+ package client
+ 
+ import "testing"
+ 
+ func TestResolveCheck(t *testing.T) {
+ 	tests := []struct {
+ 		name    string
+ 		subject Subject
+ 		want    Status
+ 	}{
+ 		{
+ 			name:    "complete subject resolves",
+ 			subject: Subject{Name: "Test Subject", Email: "subject@example.com"},
+ 			want:    StatusResolved,
+ 		},
++		{
++			name: "subject with a bank account resolves",
++			subject: Subject{
++				Name:     "Jane Okafor",
++				Email:    "jane.okafor@example.com",
++				DOB:      "1987-04-12",
++				Postcode: "SW1A 1AA",
++				SortCode: 401234,
++				Account:  41000032,
++			},
++			want: StatusResolved,
++		},
+ 	}
+ 	for _, tt := range tests {
+ 		t.Run(tt.name, func(t *testing.T) {
+ 			if got := ResolveCheck(tt.subject); got != tt.want {
+ 				t.Errorf("ResolveCheck() = %v, want %v", got, tt.want)
+ 			}
+ 		})
+ 	}
+ }

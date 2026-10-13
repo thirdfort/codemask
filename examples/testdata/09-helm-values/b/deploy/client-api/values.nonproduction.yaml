@@ -1,0 +1,15 @@
+# client-api in nonproduction
+image:
+  repository: europe-west2-docker.pkg.dev/core/client-api
+  tag: v1.42.0
+replicas: 3
+notes: |
+  Raised for the Okafor migration; ask Jane before scaling down.
+env:
+  - name: SUPPORT_EMAIL
+    value: support@example.com
+  - name: FEATURE_PREVENT_OWN_RESOLUTION
+    value: "true"
+resources:
+  limits:
+    memory: 512Mi

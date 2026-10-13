@@ -1,0 +1,13 @@
+--- a/services/client/resolve.go
++++ b/services/client/resolve.go
+# masked go · code unchanged, literals unchanged, comments changed
+@@ -1,6 +1,9 @@
+ package client
+ 
+ // <comment>
++//
++// <comment>
++// <comment>
+ func ResolveCheck(s Subject) Status {
+ 	if s.Name == "" || s.Email == "" {
+ 		return StatusPending

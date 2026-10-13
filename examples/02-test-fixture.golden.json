@@ -1,0 +1,52 @@
+{
+  "files": [
+    {
+      "path": "services/client/check_test.go",
+      "status": "modified",
+      "language": "go",
+      "mode": "masked",
+      "tags": [
+        "test"
+      ],
+      "added": 12,
+      "removed": 0,
+      "facts": {
+        "codeChanged": true,
+        "literalsChanged": true,
+        "commentsChanged": false
+      },
+      "hunks": [
+        {
+          "header": "@@ -13,6 +13,18 @@",
+          "lines": [
+            " \t\t\tsubject: Subject{Name: \"\u003cstr\u003e\", Email: \"\u003cstr\u003e\"},",
+            " \t\t\twant:    StatusResolved,",
+            " \t\t},",
+            "+\t\t{",
+            "+\t\t\tname: \"\u003cstr\u003e\",",
+            "+\t\t\tsubject: Subject{",
+            "+\t\t\t\tName:     \"\u003cstr\u003e\",",
+            "+\t\t\t\tEmail:    \"\u003cstr\u003e\",",
+            "+\t\t\t\tDOB:      \"\u003cstr\u003e\",",
+            "+\t\t\t\tPostcode: \"\u003cstr\u003e\",",
+            "+\t\t\t\tSortCode: \u003cnum\u003e,",
+            "+\t\t\t\tAccount:  \u003cnum\u003e,",
+            "+\t\t\t},",
+            "+\t\t\twant: StatusResolved,",
+            "+\t\t},",
+            " \t}",
+            " \tfor _, tt := range tests {",
+            " \t\tt.Run(tt.name, func(t *testing.T) {"
+          ]
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "files": 1,
+    "added": 12,
+    "removed": 0,
+    "masked": 1,
+    "countsOnly": 0
+  }
+}

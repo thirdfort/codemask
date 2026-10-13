@@ -1,0 +1,41 @@
+{
+  "files": [
+    {
+      "path": "db/migrations/0042_add_preferred_name.sql",
+      "status": "added",
+      "language": "sql",
+      "mode": "masked",
+      "tags": [
+        "migration"
+      ],
+      "added": 7,
+      "removed": 0,
+      "facts": {
+        "codeChanged": true,
+        "literalsChanged": true,
+        "commentsChanged": true
+      },
+      "hunks": [
+        {
+          "header": "@@ -0,0 +1,7 @@",
+          "lines": [
+            "+-- \u003ccomment\u003e",
+            "+ALTER TABLE subjects ADD COLUMN preferred_name text;",
+            "+",
+            "+UPDATE subjects",
+            "+SET preferred_name = '\u003cstr\u003e'",
+            "+WHERE email = '\u003cstr\u003e'",
+            "+  AND account_number = \u003cnum\u003e;"
+          ]
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "files": 1,
+    "added": 7,
+    "removed": 0,
+    "masked": 1,
+    "countsOnly": 0
+  }
+}

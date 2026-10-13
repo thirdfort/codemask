@@ -1,0 +1,51 @@
+{
+  "files": [
+    {
+      "path": "go.mod",
+      "status": "modified",
+      "language": "gomod",
+      "mode": "masked",
+      "tags": [
+        "manifest"
+      ],
+      "added": 1,
+      "removed": 1,
+      "facts": {
+        "codeChanged": true,
+        "literalsChanged": false,
+        "commentsChanged": false
+      },
+      "hunks": [
+        {
+          "header": "@@ -4,5 +4,5 @@",
+          "lines": [
+            " ",
+            " require (",
+            " \tgithub.com/google/uuid v1.6.0",
+            "-\tgolang.org/x/sync v0.10.0 // \u003ccomment\u003e",
+            "+\tgolang.org/x/sync v0.11.0 // \u003ccomment\u003e",
+            " )"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "go.sum",
+      "status": "modified",
+      "mode": "counts",
+      "reason": "lockfile",
+      "tags": [
+        "lockfile"
+      ],
+      "added": 2,
+      "removed": 2
+    }
+  ],
+  "summary": {
+    "files": 2,
+    "added": 3,
+    "removed": 3,
+    "masked": 1,
+    "countsOnly": 1
+  }
+}

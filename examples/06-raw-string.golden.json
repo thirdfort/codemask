@@ -1,0 +1,52 @@
+{
+  "files": [
+    {
+      "path": "services/client/fixtures.go",
+      "status": "modified",
+      "language": "go",
+      "mode": "masked",
+      "added": 6,
+      "removed": 6,
+      "facts": {
+        "codeChanged": true,
+        "literalsChanged": true,
+        "commentsChanged": false
+      },
+      "hunks": [
+        {
+          "header": "@@ -4,15 +4,15 @@",
+          "lines": [
+            " const subjectFixture = `",
+            " \u003cstr\u003e",
+            " \u003cstr\u003e",
+            "-\u003cstr\u003e",
+            "-\u003cstr\u003e",
+            "+\u003cstr\u003e",
+            "+\u003cstr\u003e",
+            " \u003cstr\u003e",
+            "-\u003cstr\u003e",
+            "-\u003cstr\u003e",
+            "+\u003cstr\u003e",
+            "+\u003cstr\u003e",
+            " \u003cstr\u003e",
+            " \u003cstr\u003e",
+            "-\u003cstr\u003e",
+            "+\u003cstr\u003e",
+            " `",
+            " ",
+            " // \u003ccomment\u003e",
+            "-const importBatchSize = 50",
+            "+const importBatchSize = 100"
+          ]
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "files": 1,
+    "added": 6,
+    "removed": 6,
+    "masked": 1,
+    "countsOnly": 0
+  }
+}

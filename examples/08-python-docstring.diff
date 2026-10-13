@@ -1,0 +1,22 @@
+diff --git a/tools/report.py b/tools/report.py
+index 3b12e66..bdf511d 100644
+--- a/tools/report.py
++++ b/tools/report.py
+@@ -1,14 +1,15 @@
+ """Weekly check report."""
+ 
+ import csv
+ 
+ 
+ def write_report(rows, path):
+     """Write one row per check.
+ 
+-    Example row: {"subject": "Test Subject", "status": "resolved"}
++    Example row: {"subject": "Jane Okafor", "status": "resolved",
++                  "resolved_by": "jane.okafor@example.com"}
+     """
+     with open(path, "w", newline="") as f:
+-        writer = csv.DictWriter(f, fieldnames=["subject", "status"])
++        writer = csv.DictWriter(f, fieldnames=["subject", "status", "resolved_by"])
+         writer.writeheader()
+         writer.writerows(rows)

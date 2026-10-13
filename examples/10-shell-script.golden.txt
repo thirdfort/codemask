@@ -1,0 +1,17 @@
+--- a/scripts/reseed-subject.sh
++++ b/scripts/reseed-subject.sh
+# masked shell · code changed, literals changed, comments unchanged
+@@ -6,3 +6,13 @@
+ 
+ psql -h <arg> -U <arg> -d <arg> \
+   -c "<str>"
++
++if [[ -n "<str>" ]]; then
++  echo "<str>"
++  exit 0
++fi
++
++./local/seed-subject.sh --email="<str>" --name "<str>" <arg>
++cat <<LOG >> <arg>
++<str>
++LOG

@@ -1,0 +1,15 @@
+--- a/portal/src/components/SaveButton.tsx
++++ b/portal/src/components/SaveButton.tsx
+# masked tsx · code unchanged, literals changed, comments unchanged · tags: ui
+@@ -8,9 +8,9 @@
+ 
+ export function SaveButton({ saving, onSave }: SaveButtonProps) {
+   return (
+-    <Button aria-label="<str>" disabled={saving} onClick={onSave}>
++    <Button aria-label="<str>" disabled={saving} onClick={onSave}>
+       {saving ? <Spinner /> : null}
+-      <text>
++      <text>
+     </Button>
+   );
+ }

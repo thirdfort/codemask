@@ -1,0 +1,10 @@
+diff --git b/services/client/testdata/subjects.json b/services/client/testdata/subjects.json
+new file mode 100644
+index 0000000..d8a4c19
+--- /dev/null
++++ b/services/client/testdata/subjects.json
+@@ -0,0 +1,4 @@
++[
++  {"name": "Jane Okafor", "email": "jane.okafor@example.com", "dob": "1987-04-12"},
++  {"name": "Tomasz Nowak", "email": "t.nowak@example.com", "dob": "1990-11-02"}
++]

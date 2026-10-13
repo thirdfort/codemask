@@ -1,0 +1,11 @@
+--- /dev/null
++++ b/db/migrations/0042_add_preferred_name.sql
+# masked sql · code changed, literals changed, comments changed · tags: migration
+@@ -0,0 +1,7 @@
++-- <comment>
++ALTER TABLE subjects ADD COLUMN preferred_name text;
++
++UPDATE subjects
++SET preferred_name = '<str>'
++WHERE email = '<str>'
++  AND account_number = <num>;

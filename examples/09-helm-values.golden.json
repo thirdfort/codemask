@@ -1,0 +1,52 @@
+{
+  "files": [
+    {
+      "path": "deploy/client-api/values.nonproduction.yaml",
+      "status": "modified",
+      "language": "yaml",
+      "mode": "masked",
+      "tags": [
+        "iac"
+      ],
+      "added": 5,
+      "removed": 3,
+      "facts": {
+        "codeChanged": true,
+        "literalsChanged": true,
+        "commentsChanged": false
+      },
+      "hunks": [
+        {
+          "header": "@@ -1,13 +1,15 @@",
+          "lines": [
+            " # \u003ccomment\u003e",
+            " image:",
+            "   repository: \u003cval\u003e",
+            "-  tag: v1.41.0",
+            "-replicas: 2",
+            "+  tag: v1.42.0",
+            "+replicas: 3",
+            "+notes: |",
+            "+  \u003cstr\u003e",
+            " env:",
+            "   - name: \u003cval\u003e",
+            "     value: \u003cval\u003e",
+            "   - name: \u003cval\u003e",
+            "-    value: \"\u003cstr\u003e\"",
+            "+    value: \"\u003cstr\u003e\"",
+            " resources:",
+            "   limits:",
+            "     memory: 512Mi"
+          ]
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "files": 1,
+    "added": 5,
+    "removed": 3,
+    "masked": 1,
+    "countsOnly": 0
+  }
+}

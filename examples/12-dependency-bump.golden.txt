@@ -1,0 +1,13 @@
+--- a/go.mod
++++ b/go.mod
+# masked gomod · code changed, literals unchanged, comments unchanged · tags: manifest
+@@ -4,5 +4,5 @@
+ 
+ require (
+ 	github.com/google/uuid v1.6.0
+-	golang.org/x/sync v0.10.0 // <comment>
++	golang.org/x/sync v0.11.0 // <comment>
+ )
+--- a/go.sum
++++ b/go.sum
+# counts only (+2 -2): lockfile · tags: lockfile

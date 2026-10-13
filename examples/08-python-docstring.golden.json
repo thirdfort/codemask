@@ -1,0 +1,43 @@
+{
+  "files": [
+    {
+      "path": "tools/report.py",
+      "status": "modified",
+      "language": "python",
+      "mode": "masked",
+      "added": 3,
+      "removed": 2,
+      "facts": {
+        "codeChanged": true,
+        "literalsChanged": true,
+        "commentsChanged": false
+      },
+      "hunks": [
+        {
+          "header": "@@ -6,9 +6,10 @@",
+          "lines": [
+            " def write_report(rows, path):",
+            "     \"\"\"\u003cstr\u003e",
+            " ",
+            "-\u003cstr\u003e",
+            "+\u003cstr\u003e",
+            "+\u003cstr\u003e",
+            " \u003cstr\u003e\"\"\"",
+            "     with open(path, \"\u003cstr\u003e\", newline=\"\") as f:",
+            "-        writer = csv.DictWriter(f, fieldnames=[\"\u003cstr\u003e\", \"\u003cstr\u003e\"])",
+            "+        writer = csv.DictWriter(f, fieldnames=[\"\u003cstr\u003e\", \"\u003cstr\u003e\", \"\u003cstr\u003e\"])",
+            "         writer.writeheader()",
+            "         writer.writerows(rows)"
+          ]
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "files": 1,
+    "added": 3,
+    "removed": 2,
+    "masked": 1,
+    "countsOnly": 0
+  }
+}

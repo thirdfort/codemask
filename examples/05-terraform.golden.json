@@ -1,0 +1,49 @@
+{
+  "files": [
+    {
+      "path": "infra/environments/nonproduction/secrets.tf",
+      "status": "modified",
+      "language": "hcl",
+      "mode": "masked",
+      "tags": [
+        "iac"
+      ],
+      "added": 12,
+      "removed": 0,
+      "facts": {
+        "codeChanged": true,
+        "literalsChanged": true,
+        "commentsChanged": false
+      },
+      "hunks": [
+        {
+          "header": "@@ -6,3 +6,15 @@",
+          "lines": [
+            "     auto {}",
+            "   }",
+            " }",
+            "+",
+            "+resource \"google_secret_manager_secret\" \"purr_ai_gateway_api_key\" {",
+            "+  project   = var.project_id",
+            "+  secret_id = \"\u003cstr\u003e\"",
+            "+  labels = {",
+            "+    owner = \"\u003cstr\u003e\"",
+            "+  }",
+            "+",
+            "+  replication {",
+            "+    auto {}",
+            "+  }",
+            "+}"
+          ]
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "files": 1,
+    "added": 12,
+    "removed": 0,
+    "masked": 1,
+    "countsOnly": 0
+  }
+}
