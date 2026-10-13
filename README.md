@@ -151,7 +151,7 @@ Delimiters stay, so `"<str>"` still reads as a string and `// <comment>` as a co
 
 | Reason | When |
 |--------|------|
-| `data-file` | Under `testdata/`, `fixtures/`, `seed/`, `__snapshots__/`, or a CSV, snapshot or golden file |
+| `data-file` | Under `testdata/`, `fixtures/`, `seed/`, `seeddata/`, `__snapshots__/`, or a CSV, snapshot or golden file |
 | `lockfile` | `go.sum`, `package-lock.json`, `bun.lock` and the like |
 | `generated` | `.pb.go`, `zz_generated`, `.min.js` and the like |
 | `prose` | Markdown, reStructuredText, plain text |
@@ -202,7 +202,7 @@ Only literals changed means a copy change. Only comments changed means a docs ch
 false means only formatting moved.
 
 Tags come from the path alone: `test`, `data`, `manifest`, `lockfile`, `generated`,
-`migration`, `ci`, `iac`, `docs`, `styles`, `ui`.
+`migration`, `ci`, `iac`, `docs`, `styles`, `ui`, `i18n`.
 
 ## Output
 

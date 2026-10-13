@@ -201,7 +201,7 @@ func (s *shell) variable(line string, i int) int {
 		return i + len(m)
 	}
 	if strings.HasPrefix(rest, "${") {
-		end := strings.IndexByte(rest, '}')
+		end := expansionEnd(rest)
 		if end < 0 {
 			s.dirty = true
 			s.b.mask(segLiteral, phExpr, rest)
@@ -220,6 +220,37 @@ func (s *shell) variable(line string, i int) int {
 	}
 	s.b.code("$")
 	return i + 1
+}
+
+// expansionEnd returns the index of the } that closes the ${ at the start of
+// rest, or -1. Quotes and nested ${…} inside it are skipped over, as in
+// ${flags[@]+"${flags[@]}"}.
+func expansionEnd(rest string) int {
+	depth := 0
+	for j := 0; j < len(rest); j++ {
+		switch c := rest[j]; {
+		case c == '\\':
+			j++
+		case c == '\'' || c == '"':
+			k := j + 1
+			for k < len(rest) && rest[k] != c {
+				if rest[k] == '\\' && c == '"' {
+					k++
+				}
+				k++
+			}
+			j = k
+		case strings.HasPrefix(rest[j:], "${"):
+			depth++
+			j++
+		case c == '}':
+			depth--
+			if depth == 0 {
+				return j
+			}
+		}
+	}
+	return -1
 }
 
 // word reads one unquoted word and decides what it is. A word stops at a

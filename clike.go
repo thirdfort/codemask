@@ -282,7 +282,8 @@ func (l *clike) special(line string, i int) (int, bool) {
 			l.prev = `"`
 			return end, true
 		}
-	case l.cfg.jsx && c == '<' && jsxAllowed(l.prev) && i+1 < len(line) && (isLetter(line[i+1]) || line[i+1] == '>'):
+	case l.cfg.jsx && c == '<' && jsxAllowed(l.prev) && i+1 < len(line) && (isLetter(line[i+1]) || line[i+1] == '>') &&
+		!typeParams(line, i):
 		if line[i+1] == '>' {
 			l.emit("<>")
 			l.push(frame{kind: fJSXText})
@@ -382,14 +383,20 @@ var jsxAttrDelims = map[byte]*strDelim{
 // jsxTag lexes inside <Tag …> or </Tag>. Names and attribute names are code;
 // attribute strings are literals; {…} is code.
 func (l *clike) jsxTag(line string, i int) int {
+	if j, ok := l.comment(line, i); ok {
+		return j
+	}
 	c := line[i]
 	switch {
+	case c == '<':
+		return l.typeArgs(line, i)
 	case c == '"' || c == '\'':
 		l.openString(jsxAttrDelims[c])
 		return i + 1
 	case c == '{':
 		l.emit("{")
 		l.push(frame{kind: fCode, interp: true})
+		l.prev = "{"
 		return i + 1
 	case strings.HasPrefix(line[i:], "/>"):
 		l.emit("/>")
@@ -424,6 +431,29 @@ func (l *clike) jsxTag(line string, i int) int {
 	}
 }
 
+// typeArgs lexes a component's type arguments, as in <Table<Row> …>. They are
+// code, and their closing > doesn't end the tag. They must close on the line
+// they open on.
+func (l *clike) typeArgs(line string, i int) int {
+	depth := 0
+	for j := i; j < len(line); j++ {
+		switch {
+		case strings.HasPrefix(line[j:], "=>"):
+			j++
+		case line[j] == '<':
+			depth++
+		case line[j] == '>':
+			depth--
+			if depth == 0 {
+				l.emit(line[i : j+1])
+				return j + 1
+			}
+		}
+	}
+	l.dirty = true
+	return len(line)
+}
+
 // jsxText lexes an element's children. Text is content; tags and {…} are not.
 func (l *clike) jsxText(line string, i int) int {
 	switch {
@@ -442,6 +472,7 @@ func (l *clike) jsxText(line string, i int) int {
 	case line[i] == '{':
 		l.emit("{")
 		l.push(frame{kind: fCode, interp: true})
+		l.prev = "{"
 		return i + 1
 	}
 	j := i
@@ -498,6 +529,20 @@ func jsxAllowed(prev string) bool {
 	default:
 		return false
 	}
+}
+
+// typeParams reports whether the < at line[i] opens a generic's type
+// parameters rather than an element. In TSX a generic arrow function has to
+// say so, as <T,>, <T extends U> or <T = U,>, because <T> would be read as
+// JSX.
+func typeParams(line string, i int) bool {
+	j := i + 1
+	for j < len(line) && isIdent(line[j]) {
+		j++
+	}
+	rest := strings.TrimLeft(line[j:], " \t")
+	return strings.HasPrefix(rest, ",") || strings.HasPrefix(rest, "extends ") ||
+		strings.HasPrefix(rest, "=") && !strings.HasPrefix(rest, "=>")
 }
 
 // scanRegex finds the end of a regex literal starting at line[i] == '/'. It

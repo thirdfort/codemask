@@ -21,6 +21,7 @@ const (
 	TagDocs      = "docs"
 	TagStyles    = "styles"
 	TagUI        = "ui"
+	TagI18n      = "i18n"
 )
 
 var lockfiles = []string{
@@ -34,7 +35,7 @@ var manifests = []string{
 	"Gemfile", "composer.json", "Chart.yaml",
 }
 
-var dataDirs = []string{"testdata", "fixtures", "__fixtures__", "seed", "seeds", "__snapshots__", "golden"}
+var dataDirs = []string{"testdata", "fixtures", "__fixtures__", "seed", "seeds", "seeddata", "seed-data", "seed_data", "__snapshots__", "golden"}
 
 var dataExts = []string{".csv", ".tsv", ".snap", ".golden", ".ndjson", ".jsonl", ".parquet", ".xlsx", ".xls"}
 
@@ -79,6 +80,8 @@ func pathTags(p string) []string {
 	add(slices.Contains(proseExts, ext) || has("docs") || base == "LICENSE" || base == "CHANGELOG", TagDocs)
 	add(slices.Contains([]string{".css", ".scss", ".sass", ".less"}, ext), TagStyles)
 	add(slices.Contains([]string{".tsx", ".jsx", ".vue", ".svelte"}, ext), TagUI)
+	add(has("messages", "locales", "i18n", "translations") &&
+		slices.Contains([]string{".json", ".yaml", ".yml", ".po", ".properties"}, ext), TagI18n)
 	return tags
 }
 

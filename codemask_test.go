@@ -2,6 +2,7 @@ package codemask
 
 import (
 	"fmt"
+	"slices"
 	"strings"
 	"testing"
 )
@@ -67,6 +68,44 @@ func TestMaskLanguages(t *testing.T) {
 			path: "a.ts",
 			in:   "const m = new Map<string, number>();\nconst ok = a < b && c > d;",
 			want: "const m = new Map<string, number>();\nconst ok = a < b && c > d;",
+		},
+		{
+			name: "TSX generic arrow functions are not elements",
+			path: "a.tsx",
+			in: `const id = <T,>(v: T) => v;
+const f = <K extends string>(k: K) => "x";
+const g = <T = unknown,>(t: T) => t;
+const el = <div>Hi</div>;`,
+			want: `const id = <T,>(v: T) => v;
+const f = <K extends string>(k: K) => "<str>";
+const g = <T = unknown,>(t: T) => t;
+const el = <div><text></div>;`,
+		},
+		{
+			name: "comments and type arguments inside a JSX tag",
+			path: "a.tsx",
+			in: `const el = (
+  <Table<Row>
+    rows={rows}
+    // the prop isn't optional in Table's type
+    label=""
+    /* Jane's */ title="Jane"
+    icon={<b>Jane</b>}
+  >
+    Hello
+  </Table>
+);`,
+			want: `const el = (
+  <Table<Row>
+    rows={rows}
+    // <comment>
+    label=""
+    /*<comment>*/ title="<str>"
+    icon={<b><text></b>}
+  >
+    <text>
+  </Table>
+);`,
 		},
 		{
 			name: "JSX text, nesting, fragments and expressions",
@@ -137,6 +176,12 @@ const n = a < b;`,
 			path: "x.sh",
 			in:   "for f in a b; do\n  if test -f \"$f\"; then rm -- \"$f\"; fi\ndone",
 			want: "for f in <arg> <arg>; do\n  if test -f \"<str>\"; then rm -- \"<str>\"; fi\ndone",
+		},
+		{
+			name: "shell expansions holding quotes and braces",
+			path: "x.sh",
+			in:   "gcloud run ${flags[@]+\"${flags[@]}\"} \\\n  ${next:+--data \"next=${next}\"} --quiet",
+			want: "gcloud <arg> ${<expr>} \\\n  ${<expr>} --quiet",
 		},
 		{
 			name: "dockerfile",
@@ -309,5 +354,34 @@ func TestContextAndBudget(t *testing.T) {
 	h := res.Files[0].Hunks
 	if len(h) != 1 || h[0].Header != "@@ -9,5 +9,5 @@" || len(h[0].Lines) != 6 {
 		t.Errorf("context: got %+v", h)
+	}
+}
+
+func TestPathTags(t *testing.T) {
+	tests := []struct {
+		path string
+		want []string
+	}{
+		{"svc/internal/handler.go", nil},
+		{"svc/internal/handler_test.go", []string{TagTest}},
+		{"portal/src/Button.test.tsx", []string{TagTest, TagUI}},
+		{"svc/internal/repository/seeddata/flags.sql", []string{TagData}},
+		{"svc/testdata/case.json", []string{TagData}},
+		{"go.mod", []string{TagManifest}},
+		{"go.sum", []string{TagLockfile}},
+		{"api/v1/check.pb.go", []string{TagGenerated}},
+		{"svc/migrations/0042_add_index.sql", []string{TagMigration}},
+		{".github/workflows/ci.yml", []string{TagCI}},
+		{"infra/gcp/main.tf", []string{TagIaC}},
+		{"docs/guide.md", []string{TagDocs}},
+		{"portal/src/Side.module.css", []string{TagStyles}},
+		{"portal/src/messages/en.json", []string{TagI18n}},
+		{"portal/src/locales/fr.yaml", []string{TagI18n}},
+		{"portal/src/messages/format.ts", nil},
+	}
+	for _, tt := range tests {
+		if got := pathTags(tt.path); !slices.Equal(got, tt.want) {
+			t.Errorf("%s: got %v, want %v", tt.path, got, tt.want)
+		}
 	}
 }
