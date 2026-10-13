@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - run: go build ./...
+      - run: go test ./...
+      # The example diffs are built from the trees under examples/testdata.
+      # A tree edited without rerunning gen.sh would test a stale diff.
+      - name: Example diffs match their sources
+        run: |
+          examples/gen.sh
+          git diff --exit-code -- examples/
+      - uses: golangci/golangci-lint-action@v8
+        with:
+          version: v2.12.2
