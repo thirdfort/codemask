@@ -12,10 +12,11 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-go@v6
         with:
           go-version-file: go.mod
+          cache: false # no dependencies, so no go.sum to key a cache on
       - run: go build ./...
       - run: go test ./...
       # The example diffs are built from the trees under examples/testdata.
